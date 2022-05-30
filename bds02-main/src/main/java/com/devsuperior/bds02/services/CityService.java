@@ -3,6 +3,7 @@ package com.devsuperior.bds02.services;
 import com.devsuperior.bds02.dto.CityDto;
 import com.devsuperior.bds02.entities.City;
 import com.devsuperior.bds02.repositories.CityRepository;
+import com.devsuperior.bds02.services.exceptions.DatabaseException;
 import com.devsuperior.bds02.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -40,7 +41,7 @@ public class CityService {
         } catch (EmptyResultDataAccessException e) {
             throw new ResourceNotFoundException("Id not found " + id);
         } catch (DataIntegrityViolationException e) {
-            throw new DataIntegrityViolationException("Integrity violation");
+            throw new DatabaseException("Integrity violation");
         }
     }
 
